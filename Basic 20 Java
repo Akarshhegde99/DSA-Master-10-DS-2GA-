@@ -1,0 +1,407 @@
+11. Anagram Check
+Algorithm
+Check if the lengths of the two strings are equal. If not, they cannot be anagrams.
+Convert both strings to lowercase.
+Sort the characters of both strings.
+Compare the sorted strings. If they are equal, the original strings are anagrams.
+
+
+import java.util.Arrays;
+
+public class AnagramCheck {
+    public static boolean areAnagrams(String str1, String str2) {
+        if (str1.length() != str2.length()) {
+            return false;
+        }
+
+        char[] charArray1 = str1.toLowerCase().toCharArray();
+        char[] charArray2 = str2.toLowerCase().toCharArray();
+        
+        Arrays.sort(charArray1);
+        Arrays.sort(charArray2);
+
+        return Arrays.equals(charArray1, charArray2);
+    }
+
+    public static void main(String[] args) {
+        String str1 = "Listen";
+        String str2 = "Silent";
+
+        System.out.println(areAnagrams(str1, str2));  // Output: true
+    }
+}
+
+
+
+12. Remove Duplicates from Array
+Algorithm
+Create a set to store unique elements.
+Iterate through the array and add each element to the set.
+Convert the set back to an array.
+
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+public class RemoveDuplicates {
+    public static int[] removeDuplicates(int[] array) {
+        Set<Integer> set = new HashSet<>();
+        for (int num : array) {
+            set.add(num);
+        }
+
+        int[] result = new int[set.size()];
+        int i = 0;
+        for (int num : set) {
+            result[i++] = num;
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int[] array = {1, 2, 2, 3, 4, 4, 5};
+        System.out.println(Arrays.toString(removeDuplicates(array)));  // Output: [1, 2, 3, 4, 5]
+    }
+}
+
+
+
+13. Count Vowels and Consonants
+Algorithm
+Initialize counters for vowels and consonants.
+Iterate through the string and check each character.
+If the character is a vowel, increment the vowel counter.
+If the character is a consonant, increment the consonant counter.
+
+
+public class VowelConsonantCount {
+    public static void countVowelsAndConsonants(String str) {
+        int vowels = 0, consonants = 0;
+        str = str.toLowerCase();
+
+        for (char c : str.toCharArray()) {
+            if (c >= 'a' && c <= 'z') {
+                if ("aeiou".indexOf(c) != -1) {
+                    vowels++;
+                } else {
+                    consonants++;
+                }
+            }
+        }
+
+        System.out.println("Vowels: " + vowels);
+        System.out.println("Consonants: " + consonants);
+    }
+
+    public static void main(String[] args) {
+        String str = "Hello World";
+        countVowelsAndConsonants(str);  // Output: Vowels: 3, Consonants: 7
+    }
+}
+
+
+14. Matrix Transpose
+Algorithm
+Create a new matrix with transposed dimensions.
+Copy the elements from the original matrix to the transposed matrix by swapping rows and columns.
+
+public class MatrixTranspose {
+    public static int[][] transposeMatrix(int[][] matrix) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        int[][] transposed = new int[cols][rows];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                transposed[j][i] = matrix[i][j];
+            }
+        }
+
+        return transposed;
+    }
+
+    public static void main(String[] args) {
+        int[][] matrix = {
+            {1, 2, 3},
+            {4, 5, 6}
+        };
+        
+        int[][] transposed = transposeMatrix(matrix);
+        
+        for (int[] row : transposed) {
+            for (int elem : row) {
+                System.out.print(elem + " ");
+            }
+            System.out.println();
+        }
+        // Output:
+        // 1 4 
+        // 2 5 
+        // 3 6 
+    }
+}
+
+
+15. GCD and LCM
+Algorithm for GCD
+Use the Euclidean algorithm to find the GCD.
+Algorithm for LCM
+Calculate LCM using the relation LCM(a, b) = (a * b) / GCD(a, b).
+
+public class GcdLcm {
+    public static int gcd(int a, int b) {
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+
+    public static int lcm(int a, int b) {
+        return (a * b) / gcd(a, b);
+    }
+
+    public static void main(String[] args) {
+        int a = 12, b = 18;
+        System.out.println("GCD: " + gcd(a, b));  // Output: GCD: 6
+        System.out.println("LCM: " + lcm(a, b));  // Output: LCM: 36
+    }
+}
+
+
+16. Binary Search
+Algorithm
+Initialize the start and end indices.
+Find the middle index.
+Compare the middle element with the target.
+Adjust the start or end index based on the comparison and repeat until the target is found or the indices overlap.
+
+public class BinarySearch {
+    public static int binarySearch(int[] array, int target) {
+        int start = 0, end = array.length - 1;
+
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+
+            if (array[mid] == target) {
+                return mid;
+            } else if (array[mid] < target) {
+                start = mid + 1;
+            } else {
+                end = mid - 1;
+            }
+        }
+
+        return -1;  // Target not found
+    }
+
+    public static void main(String[] args) {
+        int[] array = {1, 2, 3, 4, 5, 6, 7};
+        int target = 4;
+        System.out.println(binarySearch(array, target));  // Output: 3
+    }
+}
+
+
+17. Find Second Largest Element
+Algorithm
+Initialize the first and second largest elements to the minimum value.
+Iterate through the array and update the first and second largest elements accordingly.
+
+public class SecondLargestElement {
+    public static int findSecondLargest(int[] array) {
+        int first = Integer.MIN_VALUE, second = Integer.MIN_VALUE;
+
+        for (int num : array) {
+            if (num > first) {
+                second = first;
+                first = num;
+            } else if (num > second && num != first) {
+                second = num;
+            }
+        }
+
+        return second;
+    }
+
+    public static void main(String[] args) {
+        int[] array = {1, 2, 3, 4, 5};
+        System.out.println(findSecondLargest(array));  // Output: 4
+    }
+}
+
+
+18. Armstrong Number
+Algorithm
+Calculate the number of digits in the number.
+Calculate the sum of the digits raised to the power of the number of digits.
+Compare the sum with the original number.
+
+public class ArmstrongNumber {
+    public static boolean isArmstrong(int number) {
+        int original = number, sum = 0, digits = String.valueOf(number).length();
+
+        while (number > 0) {
+            int digit = number % 10;
+            sum += Math.pow(digit, digits);
+            number /= 10;
+        }
+
+        return sum == original;
+    }
+
+    public static void main(String[] args) {
+        int number = 153;
+        System.out.println(isArmstrong(number));  // Output: true
+    }
+}
+
+
+19. Print All Permutations
+Algorithm
+Use a recursive approach to generate all permutations by swapping characters.
+
+public class Permutations {
+    public static void printPermutations(String str) {
+        permute(str, 0, str.length() - 1);
+    }
+
+    private static void permute(String str, int l, int r) {
+        if (l == r) {
+            System.out.println(str);
+        } else {
+            for (int i = l; i <= r; i++) {
+                str = swap(str, l, i);
+                permute(str, l + 1, r);
+                str = swap(str, l, i);  // backtrack
+            }
+        }
+    }
+
+    private static String swap(String str, int i, int j) {
+        char[] charArray = str.toCharArray();
+        char temp = charArray[i];
+        charArray
+        charArray[i] = charArray[j];
+        charArray[j] = temp;
+        return String.valueOf(charArray);
+    }
+
+    public static void main(String[] args) {
+        String str = "ABC";
+        printPermutations(str);
+        // Output:
+        // ABC
+        // ACB
+        // BAC
+        // BCA
+        // CBA
+        // CAB
+    }
+}
+
+
+20. Find Intersection of Two Arrays
+Algorithm
+Use a set to store elements of the first array.
+Iterate through the second array and check if each element exists in the set.
+Store the common elements in a result list.
+
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class ArrayIntersection {
+    public static int[] findIntersection(int[] array1, int[] array2) {
+        Set<Integer> set = new HashSet<>();
+        for (int num : array1) {
+            set.add(num);
+        }
+
+        List<Integer> intersection = new ArrayList<>();
+        for (int num : array2) {
+            if (set.contains(num)) {
+                intersection.add(num);
+            }
+        }
+
+        int[] result = new int[intersection.size()];
+        for (int i = 0; i < intersection.size(); i++) {
+            result[i] = intersection.get(i);
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int[] array1 = {1, 2, 3, 4, 5};
+        int[] array2 = {3, 4, 5, 6, 7};
+
+        int[] intersection = findIntersection(array1, array2);
+        for (int num : intersection) {
+            System.out.print(num + " ");  // Output: 3 4 5
+        }
+    }
+}
+
+
+19. Print All Permutations
+Algorithm
+Use a recursive approach to generate all permutations by swapping characters.
+Define a recursive function that:
+Fixes one character and recursively generates permutations of the remaining characters.
+Swaps back to backtrack and explore other possibilities.
+Explanation
+The function permute takes the string, the starting index, and the ending index.
+If the starting index equals the ending index, it means one permutation is complete, and it gets printed.
+Otherwise, iterate from the starting index to the ending index, swap the current index with the loop index, recursively call the function with the next starting index, and then swap back to backtrack.
+
+
+public class Permutations {
+    public static void printPermutations(String str) {
+        permute(str, 0, str.length() - 1);
+    }
+
+    private static void permute(String str, int l, int r) {
+        if (l == r) {
+            System.out.println(str);
+        } else {
+            for (int i = l; i <= r; i++) {
+                str = swap(str, l, i);
+                permute(str, l + 1, r);
+                str = swap(str, l, i);  // backtrack
+            }
+        }
+    }
+
+    private static String swap(String str, int i, int j) {
+        char[] charArray = str.toCharArray();
+        char temp = charArray[i];
+        charArray[i] = charArray[j];
+        charArray[j] = temp;
+        return String.valueOf(charArray);
+    }
+
+    public static void main(String[] args) {
+        String str = "ABC";
+        printPermutations(str);
+        // Output:
+        // ABC
+        // ACB
+        // BAC
+        // BCA
+        // CBA
+        // CAB
+    }
+}
+In this solution:
+
+The printPermutations method initializes the process.
+The permute method recursively generates and prints permutations.
+The swap method swaps two characters in the string.
+This approach ensures that all permutations of the given string are printed.
