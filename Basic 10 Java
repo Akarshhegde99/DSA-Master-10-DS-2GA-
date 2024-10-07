@@ -1,0 +1,318 @@
+1. Swapping Two Numbers
+Problem:
+Write a program to swap two numbers without using a temporary variable.
+
+Algorithm:
+Initialize two numbers, a and b.
+Use arithmetic operations to swap the values.
+Print the swapped values.
+Java Code:
+java
+Copy code
+public class SwapNumbers {
+    public static void main(String[] args) {
+        int a = 5;
+        int b = 10;
+        
+        System.out.println("Before swapping: a = " + a + ", b = " + b);
+        
+        a = a + b; // a now becomes 15
+        b = a - b; // b becomes 5
+        a = a - b; // a becomes 10
+        
+        System.out.println("After swapping: a = " + a + ", b = " + b);
+    }
+}
+
+
+
+2. Sorting an Array
+Problem:
+Write a program to sort an array of integers using the bubble sort algorithm.
+
+Algorithm:
+Loop through the array multiple times.
+In each pass, compare adjacent elements.
+Swap them if they are in the wrong order.
+Continue until the array is sorted.
+Java Code:
+java
+Copy code
+public class BubbleSort {
+    public static void main(String[] args) {
+        int[] arr = {64, 25, 12, 22, 11};
+        
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = 0; j < arr.length - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+        
+        System.out.println("Sorted array:");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+    }
+}
+
+
+
+3. Palindrome Check
+Problem:
+Write a program to check if a given string is a palindrome.
+
+Algorithm:
+Initialize a string.
+Compare the string with its reverse.
+If both are equal, it's a palindrome.
+Java Code:
+java
+Copy code
+public class PalindromeCheck {
+    public static void main(String[] args) {
+        String str = "madam";
+        
+        String reversedStr = new StringBuilder(str).reverse().toString();
+        
+        if (str.equals(reversedStr)) {
+            System.out.println(str + " is a palindrome.");
+        } else {
+            System.out.println(str + " is not a palindrome.");
+        }
+    }
+}
+
+
+
+4. Factorial Calculation
+Problem:
+Write a program to calculate the factorial of a given number using recursion.
+
+Algorithm:
+If the number is 0 or 1, return 1.
+Else, return the number multiplied by the factorial of (number - 1).
+Java Code:
+java
+Copy code
+public class Factorial {
+    public static void main(String[] args) {
+        int number = 5;
+        System.out.println("Factorial of " + number + " is: " + factorial(number));
+    }
+    
+    public static int factorial(int n) {
+        if (n == 0) {
+            return 1;
+        } else {
+            return n * factorial(n - 1);
+        }
+    }
+}
+
+
+
+5. Fibonacci Sequence
+Problem:
+Write a program to generate the first n numbers in the Fibonacci sequence.
+
+Algorithm:
+Initialize the first two Fibonacci numbers.
+Use a loop to generate subsequent numbers by adding the previous two numbers.
+Java Code:
+java
+Copy code
+public class Fibonacci {
+    public static void main(String[] args) {
+        int n = 10;
+        int[] fib = new int[n];
+        
+        fib[0] = 0;
+        fib[1] = 1;
+        
+        for (int i = 2; i < n; i++) {
+            fib[i] = fib[i - 1] + fib[i - 2];
+        }
+        
+        System.out.println("First " + n + " numbers in the Fibonacci sequence:");
+        for (int num : fib) {
+            System.out.print(num + " ");
+        }
+    }
+}
+
+
+
+6. Reverse a String
+Problem:
+Write a program to reverse a given string.
+
+Algorithm:
+Convert the string to a character array.
+Use a loop to reverse the array.
+Convert the array back to a string.
+Java Code:
+java
+Copy code
+public class ReverseString {
+    public static void main(String[] args) {
+        String str = "hello";
+        
+        char[] charArray = str.toCharArray();
+        int left = 0, right = charArray.length - 1;
+        
+        while (left < right) {
+            char temp = charArray[left];
+            charArray[left] = charArray[right];
+            charArray[right] = temp;
+            left++;
+            right--;
+        }
+        
+        String reversedStr = new String(charArray);
+        System.out.println("Reversed string: " + reversedStr);
+    }
+}
+
+
+
+7. Find Maximum and Minimum in Array
+Problem:
+Write a program to find the maximum and minimum elements in an array.
+
+Algorithm:
+Initialize two variables, max and min.
+Loop through the array, updating max and min as necessary.
+Java Code:
+java
+Copy code
+public class MinMaxArray {
+    public static void main(String[] args) {
+        int[] arr = {3, 5, 7, 2, 8, -1, 4};
+        
+        int max = arr[0];
+        int min = arr[0];
+        
+        for (int num : arr) {
+            if (num > max) {
+                max = num;
+            }
+            if (num < min) {
+                min = num;
+            }
+        }
+        
+        System.out.println("Maximum value: " + max);
+        System.out.println("Minimum value: " + min);
+    }
+}
+
+
+
+8. Check Prime Number
+Problem:
+Write a program to check if a given number is a prime number.
+
+Algorithm:
+If the number is less than or equal to 1, it's not prime.
+Loop from 2 to the square root of the number.
+If the number is divisible by any of these, it's not prime.
+Java Code:
+java
+Copy code
+public class PrimeCheck {
+    public static void main(String[] args) {
+        int num = 29;
+        
+        if (isPrime(num)) {
+            System.out.println(num + " is a prime number.");
+        } else {
+            System.out.println(num + " is not a prime number.");
+        }
+    }
+    
+    public static boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+
+9. Merge Two Sorted Arrays
+Problem:
+Write a program to merge two sorted arrays into a single sorted array.
+
+Algorithm:
+Initialize pointers for both arrays.
+Compare elements and add the smaller element to the result array.
+Continue until all elements are added.
+Java Code:
+java
+Copy code
+import java.util.Arrays;
+
+public class MergeSortedArrays {
+    public static void main(String[] args) {
+        int[] arr1 = {1, 3, 5, 7};
+        int[] arr2 = {2, 4, 6, 8};
+        
+        int[] mergedArray = new int[arr1.length + arr2.length];
+        
+        int i = 0, j = 0, k = 0;
+        
+        while (i < arr1.length && j < arr2.length) {
+            if (arr1[i] < arr2[j]) {
+                mergedArray[k++] = arr1[i++];
+            } else {
+                mergedArray[k++] = arr2[j++];
+            }
+        }
+        
+        while (i < arr1.length) {
+            mergedArray[k++] = arr1[i++];
+        }
+        
+        while (j < arr2.length) {
+            mergedArray[k++] = arr2[j++];
+        }
+        
+        System.out.println("Merged array: " + Arrays.toString(mergedArray));
+    }
+}
+
+
+
+10. Sum of Digits
+Problem:
+Write a program to calculate the sum of digits of a given number.
+
+Algorithm:
+Initialize a variable to store the sum.
+Use a loop to extract and add each digit to the sum.
+Continue until all digits are processed.
+Java Code:
+java
+Copy code
+public class SumOfDigits {
+    public static void main(String[] args) {
+        int num = 12345;
+        int sum = 0;
+        
+        while (num != 0) {
+            sum += num % 10;
+            num /= 10;
+        }
+        
+        System.out.println("Sum of digits: " + sum);
+    }
+}
